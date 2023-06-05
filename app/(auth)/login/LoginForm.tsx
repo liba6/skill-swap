@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { getSafeReturnToPath } from '../../../utils/validation';
-import { LoginResponseBodyPost } from '../../api/(auth)/login/route';
+// import { getSafeReturnToPath } from '../../../utils/validation';
+import { LoginResponseBody } from '../../api/(auth)/login/route';
 import styles from './page.module.scss';
 
 export default function LoginForm(props: { returnTo?: string | string[] }) {
@@ -22,23 +22,32 @@ export default function LoginForm(props: { returnTo?: string | string[] }) {
           body: JSON.stringify({ username, password }),
         });
         console.log('response', response);
-        const data: LoginResponseBodyPost = await response.json();
+        const data: LoginResponseBody = await response.json();
         console.log('data', data);
         if ('errors' in data) {
           setErrors(data.errors);
           return;
         }
+        router.push(`/profile/${data.user.username}`);
 
-        const returnTo = getSafeReturnToPath(props.returnTo);
+        // if (
+        //   props.returnTo &&
+        //   !Array.isArray(props.returnTo) &&
+        //   /^\/[a-zA-Z0-9-?=/]*$/.test(props.returnTo)
+        // ) {
+        //   router.push(props.returnTo);
+        //   return;
+        // }
+        // const returnTo = getSafeReturnToPath(props.returnTo);
 
-        if (returnTo) {
-          router.push(returnTo);
-          return;
-        }
+        // if (returnTo) {
+        // router.push(`/profile/${data.user.username}`);
+        // return;
+        // }
 
-        router.replace(`/attractions
-        `);
-        router.refresh();
+        // router.replace(`/attractions
+        // `);
+        // router.refresh();
       }}
     >
       {errors.map((error) => (

@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
           <ul>
             <Link href="/login">Login</Link>
             <Link href="/logout">Logout</Link>{' '}
+            <Link href="/register">Register</Link>
           </ul>
         </nav>
         {children}
