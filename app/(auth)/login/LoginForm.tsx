@@ -23,7 +23,7 @@ export default function LoginForm(props: { returnTo?: string | string[] }) {
         });
         console.log('response', response);
         const data: LoginResponseBody = await response.json();
-        console.log('data', data);
+        // console.log('data', data);
         if ('errors' in data) {
           setErrors(data.errors);
           return;

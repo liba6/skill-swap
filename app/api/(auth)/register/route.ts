@@ -26,9 +26,14 @@ export const POST = async (request: NextRequest) => {
 
   // check if any input fields are empty
 
-  if (!result.data.username || !result.data.password) {
+  if (
+    !result.data.username ||
+    !result.data.password ||
+    !result.data.skillteach ||
+    !result.data.skilllearn
+  ) {
     return NextResponse.json(
-      { errors: [{ message: 'username or password is empty' }] },
+      { errors: [{ message: 'username, password or skillset is empty' }] },
       { status: 400 },
     );
   }

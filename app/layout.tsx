@@ -6,20 +6,24 @@ export const metadata = {
   description:
     'Skill-Swap is a dynamic online platform that facilitates the exchange of skills between individuals. ',
 };
+type Props = {
+  children: React.ReactNode;
+};
 
-export default function RootLayout({ children }) {
+export default function RootLayout(props: Props) {
   return (
     <html lang="en">
       <head />
       <body className={styles.body}>
         <nav>
           <ul>
-            <Link href="/login">Login</Link>
-            <Link href="/logout">Logout</Link>{' '}
-            <Link href="/register">Register</Link>
+            <a href="/login">Login</a>
+            <a href="/logout">Logout</a>
+            <a href="/register">Register</a>
+            <a href="/preferences"> Preferences</a>
           </ul>
         </nav>
-        {children}
+        {props.children}
         <footer>Liba Shapiro MSc 2023</footer>
       </body>
     </html>
