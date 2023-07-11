@@ -10,6 +10,11 @@ export default function RegisterForm() {
   const [password, setPassword] = useState('');
   const [skillteach, setSkillTeach] = useState('');
   const [skilllearn, setSkillLearn] = useState('');
+  const [favoriteColor, setFavoriteColor] = useState('');
+  const [favoriteAuthor, setFavoriteAuthor] = useState('');
+  const [favoriteFood, setFavoriteFood] = useState('');
+  const [favoritePlace, setFavoritePlace] = useState('');
+  const [email, setEmail] = useState('');
 
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const router = useRouter();
@@ -23,17 +28,38 @@ export default function RegisterForm() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ username, password, skillteach, skilllearn }),
+          body: JSON.stringify({
+            username,
+            password,
+            email,
+            skillteach,
+            skilllearn,
+          }),
         });
 
-        console.log('response', response);
-        const data: RegisterResponseBody = await response.json();
-        console.log('data', data);
+        const responsepref = await fetch('/api/preferences', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username,
+            favoriteColor,
+            favoriteAuthor,
+            favoriteFood,
+            favoritePlace,
+          }),
+        });
 
+        const data: RegisterResponseBody = await response.json();
+
+        console.log('data', data);
+        const datapref: string = await responsepref.json();
+
+        alert(datapref);
         if ('errors' in data) {
           setErrors(data.errors);
           return;
         }
+
         router.push(`/profile/${data.user.username}`);
       }}
     >
@@ -59,7 +85,15 @@ export default function RegisterForm() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <p>Choose a subject you would like to teach:</p>
+      <label>
+        My Email:
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </label>
+      <h2>Choose a subject you would like to teach:</h2>
       <label>
         Math
         <input
@@ -99,8 +133,7 @@ export default function RegisterForm() {
         />
       </label>
 
-      {/* <p>{skillteach}</p> */}
-      <p>Choose a subject you would like to learn:</p>
+      <h2>Choose a subject you would like to learn:</h2>
       <label>
         Math
         <input
@@ -137,7 +170,50 @@ export default function RegisterForm() {
           onChange={(e) => setSkillLearn(e.target.value)}
         />
       </label>
-      {/* <p>{skilllearn}</p> */}
+      <hr></hr>
+      <h3>Tell us a bit about yourself:</h3>
+      <ul>
+        <li>
+          <label>
+            {' '}
+            What's your favorite color?
+            <input
+              value={favoriteColor}
+              onChange={(event) => setFavoriteColor(event.target.value)}
+            />
+          </label>
+        </li>
+        <li>
+          <label>
+            {' '}
+            Who's your favorite author?
+            <input
+              value={favoriteAuthor}
+              onChange={(event) => setFavoriteAuthor(event.target.value)}
+            ></input>
+          </label>
+        </li>
+        <li>
+          <label>
+            {' '}
+            What's your favorite food?
+            <input
+              value={favoriteFood}
+              onChange={(event) => setFavoriteFood(event.target.value)}
+            ></input>
+          </label>
+        </li>
+        <li>
+          <label>
+            {' '}
+            What's your favorite place?
+            <input
+              value={favoritePlace}
+              onChange={(event) => setFavoritePlace(event.target.value)}
+            ></input>
+          </label>
+        </li>
+      </ul>
       <div>
         <button>Register</button>
       </div>

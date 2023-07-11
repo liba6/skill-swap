@@ -6,19 +6,40 @@ import { createUser, getUserByUsername } from '../../../../database/users';
 const userSchema = z.object({
   username: z.string(),
   password: z.string(),
+  email: z.string(),
   skillteach: z.string(),
   skilllearn: z.string(),
 });
 
 export type RegisterResponseBody =
   | { errors: { message: string }[] }
-  | { user: { username: string; skillteach: string; skilllearn: string } };
+  | {
+      user: {
+        username: string;
+        password: string;
+        email: string;
+        skillteach: string;
+        skilllearn: string;
+      };
+    };
+
+export type RegisterResponsePrefBody =
+  | { errors: { message: string }[] }
+  | {
+      user: {
+        username: string;
+        favoriteColor: string;
+        favoriteAuthor: string;
+        favoriteFood: string;
+        favoritePlace: string;
+      };
+    };
 
 export const POST = async (request: NextRequest) => {
   // 1. check that inputs have userSchema
   const body = await request.json();
-  console.log('body', body);
   const result = userSchema.safeParse(body);
+  console.log('body', body);
   console.log('result', result);
   if (!result.success) {
     return NextResponse.json({ errors: result.error.issues }, { status: 400 });
@@ -29,11 +50,12 @@ export const POST = async (request: NextRequest) => {
   if (
     !result.data.username ||
     !result.data.password ||
+    !result.data.email ||
     !result.data.skillteach ||
     !result.data.skilllearn
   ) {
     return NextResponse.json(
-      { errors: [{ message: 'username, password or skillset is empty' }] },
+      { errors: [{ message: 'One of the required fields is empty' }] },
       { status: 400 },
     );
   }
@@ -50,11 +72,11 @@ export const POST = async (request: NextRequest) => {
   // 3. hash the password
   const passwordHash = await bcrypt.hash(result.data.password, 12);
 
-  console.log('hash', passwordHash);
   // 4. Create the user/ insert user into database table
   const newUser = await createUser(
     result.data.username,
     passwordHash,
+    result.data.email,
     result.data.skillteach,
     result.data.skilllearn,
   );

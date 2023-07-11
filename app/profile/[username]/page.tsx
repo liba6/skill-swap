@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
   getUserBySkillLearn,
@@ -20,35 +21,50 @@ export default async function UserProfile({ params }: Props) {
   return (
     <>
       <h1>{user.username}</h1>
-      <p>id:{user.id}</p>
       <hr></hr>
 
       <p>Skill you want to learn: {user.skillLearn} </p>
-      <p>
+      <div>
         {' '}
         Here are the teachers available to teach you :
         {teachers ? (
           teachers.map((teacher) => (
-            <li key={teacher.id}> {teacher.username}</li>
+            <li key={teacher.id}>
+              {' '}
+              {teacher.username}
+              <span></span>
+              <Link href={`/preferences/${teacher.username}`}>
+                <button>Learn more about {teacher.username} </button>
+              </Link>
+              <button>Contact {teacher.username}</button>
+            </li>
           ))
         ) : (
           <span>Sorry, at this time, no available teachers found.</span>
         )}
-      </p>
+      </div>
 
       <hr></hr>
       <p>Skill you want to teach: {user.skillTeach}</p>
-      <p>
-        {' '}
-        Here are the students waiting to learn from you:
-        {students ? (
-          students.map((student) => (
-            <li key={student.id}> {student.username}</li>
-          ))
-        ) : (
-          <span>No students need your services at this time.</span>
-        )}
-      </p>
+      {!students ? (
+        <div>No students need your services at this time.</div>
+      ) : (
+        <div>
+          {' '}
+          <p>Here are the students waiting to learn from you:</p>
+          {students.map((student) => (
+            <li key={student.id}>
+              {' '}
+              {student.username}
+              <span></span>
+              <Link href="/preferences/{student.username}">
+                <button>Learn more about {student.username} </button>
+              </Link>
+              <button>Contact {student.username}</button>
+            </li>
+          ))}
+        </div>
+      )}
     </>
   );
 }
