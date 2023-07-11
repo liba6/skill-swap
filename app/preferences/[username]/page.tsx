@@ -7,8 +7,6 @@ type Params = {
 };
 export default async function preferencesPage(params: Params) {
   const username = params.params.username;
-  console.log('uername', username);
-  console.log('params', params.params.username);
   const profilePreferences = await getPreferencesByUsername(username);
   return (
     <div>

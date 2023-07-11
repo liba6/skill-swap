@@ -57,7 +57,7 @@ export default async function UserProfile({ params }: Props) {
               {' '}
               {student.username}
               <span></span>
-              <Link href="/preferences/{student.username}">
+              <Link href={`/preferences/${student.username}`}>
                 <button>Learn more about {student.username} </button>
               </Link>
               <button>Contact {student.username}</button>
