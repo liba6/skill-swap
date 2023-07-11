@@ -3,21 +3,14 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { RegisterResponseBody } from '../../api/(auth)/register/route';
+import { useForm } from '../useForm';
 import styles from './page.module.scss';
 
 export default function RegisterForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [skillteach, setSkillTeach] = useState('');
-  const [skilllearn, setSkillLearn] = useState('');
-  const [favoriteColor, setFavoriteColor] = useState('');
-  const [favoriteAuthor, setFavoriteAuthor] = useState('');
-  const [favoriteFood, setFavoriteFood] = useState('');
-  const [favoritePlace, setFavoritePlace] = useState('');
-  const [email, setEmail] = useState('');
-
+  const [formValues, handleChange, registerData, preferencesData] = useForm();
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const router = useRouter();
+
   return (
     <form
       onSubmit={async (event) => {
@@ -28,30 +21,18 @@ export default function RegisterForm() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            username,
-            password,
-            email,
-            skillteach,
-            skilllearn,
-          }),
+          body: JSON.stringify(registerData),
         });
 
         const responsepref = await fetch('/api/preferences', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            username,
-            favoriteColor,
-            favoriteAuthor,
-            favoriteFood,
-            favoritePlace,
-          }),
+          body: JSON.stringify(preferencesData),
         });
 
         const data: RegisterResponseBody = await response.json();
+        console.log('body', data);
 
-        console.log('data', data);
         const datapref: string = await responsepref.json();
 
         alert(datapref);
@@ -70,27 +51,28 @@ export default function RegisterForm() {
         {' '}
         Username:{' '}
         <input
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
+          name="username"
+          value={formValues.username}
+          onChange={handleChange}
         />
       </label>
       <label>
         {' '}
         Password:{' '}
         <input
-          value={password}
+          name="password"
+          value={formValues.password}
           type="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleChange}
         />
       </label>
       <label>
         My Email:
         <input
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          value={formValues.email}
+          onChange={handleChange}
         />
       </label>
       <h2>Choose a subject you would like to teach:</h2>
@@ -98,38 +80,36 @@ export default function RegisterForm() {
         Math
         <input
           type="radio"
-          name="optionteach"
+          name="skillteach"
           value="Math"
-          onChange={(e) => {
-            setSkillTeach(e.target.value);
-          }}
+          onChange={handleChange}
         />
       </label>
       <label>
         Science
         <input
           type="radio"
-          name="optionteach"
+          name="skillteach"
           value="Science"
-          onChange={(e) => setSkillTeach(e.target.value)}
+          onChange={handleChange}
         />
       </label>
       <label>
         Literature
         <input
           type="radio"
-          name="optionteach"
+          name="skillteach"
           value="Literature"
-          onChange={(e) => setSkillTeach(e.target.value)}
+          onChange={handleChange}
         />
       </label>
       <label>
         Web Development
         <input
           type="radio"
-          name="optionteach"
+          name="skillteach"
           value="Web Development"
-          onChange={(e) => setSkillTeach(e.target.value)}
+          onChange={handleChange}
         />
       </label>
 
@@ -138,36 +118,36 @@ export default function RegisterForm() {
         Math
         <input
           type="radio"
-          name="optionlearn"
+          name="skilllearn"
           value="Math"
-          onChange={(e) => setSkillLearn(e.target.value)}
+          onChange={handleChange}
         />
       </label>
       <label>
         Science
         <input
           type="radio"
-          name="optionlearn"
+          name="skilllearn"
           value="Science"
-          onChange={(e) => setSkillLearn(e.target.value)}
+          onChange={handleChange}
         />
       </label>
       <label>
         Literature
         <input
           type="radio"
-          name="optionlearn"
+          name="skilllearn"
           value="Literature"
-          onChange={(e) => setSkillLearn(e.target.value)}
+          onChange={handleChange}
         />
       </label>
       <label>
         Web Development
         <input
           type="radio"
-          name="optionlearn"
+          name="skilllearn"
           value="Web Development"
-          onChange={(e) => setSkillLearn(e.target.value)}
+          onChange={handleChange}
         />
       </label>
       <hr></hr>
@@ -178,8 +158,9 @@ export default function RegisterForm() {
             {' '}
             What's your favorite color?
             <input
-              value={favoriteColor}
-              onChange={(event) => setFavoriteColor(event.target.value)}
+              name="favoriteColor"
+              value={formValues.favoriteColor}
+              onChange={handleChange}
             />
           </label>
         </li>
@@ -188,8 +169,9 @@ export default function RegisterForm() {
             {' '}
             Who's your favorite author?
             <input
-              value={favoriteAuthor}
-              onChange={(event) => setFavoriteAuthor(event.target.value)}
+              name="favoriteAuthor"
+              value={formValues.favoriteAuthor}
+              onChange={handleChange}
             ></input>
           </label>
         </li>
@@ -198,8 +180,9 @@ export default function RegisterForm() {
             {' '}
             What's your favorite food?
             <input
-              value={favoriteFood}
-              onChange={(event) => setFavoriteFood(event.target.value)}
+              name="favoriteFood"
+              value={formValues.favoriteFood}
+              onChange={handleChange}
             ></input>
           </label>
         </li>
@@ -208,8 +191,9 @@ export default function RegisterForm() {
             {' '}
             What's your favorite place?
             <input
-              value={favoritePlace}
-              onChange={(event) => setFavoritePlace(event.target.value)}
+              name="favoritePlace"
+              value={formValues.favoritePlace}
+              onChange={handleChange}
             ></input>
           </label>
         </li>
