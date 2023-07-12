@@ -1,7 +1,12 @@
-/* .body {
-  background-color: #9cb1d2;
-} */
-
+.div {
+  background: url('../public/girlcomputer.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0.7;
+  height: 1240px;
+}
 .h1,
 .h2 {
   text-align: center;
