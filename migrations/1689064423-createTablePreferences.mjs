@@ -2,11 +2,12 @@ export async function up(sql) {
   await sql`
   CREATE TABLE preferences(
     id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    username varchar(80) NOT NULL UNIQUE,
+    username varchar(80) REFERENCES users (username) ON DELETE CASCADE,
     favorite_color varchar(20) NOT NULL,
     favorite_author varchar (30)  NOT NULL,
     favorite_food varchar(20) NOT NULL,
-    favorite_place varchar (20)  NOT NULL
+    favorite_place varchar (20)  NOT NULL,
+
   )`;
 }
 

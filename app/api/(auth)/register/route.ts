@@ -35,7 +35,7 @@ export type RegisterResponsePrefBody =
       };
     };
 
-export const POST = async (request: NextRequest) => {
+export async function POST(request: NextRequest) {
   // 1. check that inputs have userSchema
   const body = await request.json();
   const result = userSchema.safeParse(body);
@@ -90,4 +90,4 @@ export const POST = async (request: NextRequest) => {
   // 5. Tell client that username created
 
   return NextResponse.json({ user: { username: newUser.username } });
-};
+}

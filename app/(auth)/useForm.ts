@@ -1,19 +1,46 @@
 import { ChangeEvent, useState } from 'react';
 
-export const useForm = (): ((
-  formValues: {
-    username: string;
-    password: string;
-    skillteach: string;
-    skillearn: string;
-    favoriteColor: string;
-    favoriteAuthor: string;
-    favoriteFood: string;
-    favoritePlace: string;
-    email: string;
-  },
+type FormValues = {
+  username: string;
+  password: string;
+  skillteach: string;
+  skilllearn: string;
+  favoriteColor: string;
+  favoriteAuthor: string;
+  favoriteFood: string;
+  favoritePlace: string;
+  email: string;
+};
+
+type RegisterData = {
+  username: string;
+  password: string;
+  email: string;
+  skillteach: string;
+  skilllearn: string;
+};
+
+type PreferencesData = {
+  username: string;
+  favoriteColor: string;
+  favoriteAuthor: string;
+  favoriteFood: string;
+  favoritePlace: string;
+};
+
+type ChangeFormValues = (
+  formValues: FormValues,
   event: ChangeEvent<HTMLInputElement>,
-) => void) => {
+) => void;
+
+type UseFormReturn = [
+  FormValues,
+  ChangeFormValues,
+  RegisterData,
+  PreferencesData,
+];
+
+export const useForm = (): useFormReturn => {
   const [formValues, setFormValues] = useState({
     username: '',
     password: '',
