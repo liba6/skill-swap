@@ -28,19 +28,17 @@ type PreferencesData = {
   favoritePlace: string;
 };
 
-type ChangeFormValues = (
-  formValues: FormValues,
-  event: ChangeEvent<HTMLInputElement>,
-) => void;
+// type ChangeFormValues = (
+//   formValues: FormValues,
+//   event: ChangeEvent<HTMLInputElement>,
+// ) => void;
 
-type UseFormReturn = [
-  FormValues,
-  ChangeFormValues,
-  RegisterData,
-  PreferencesData,
-];
 
-export const useForm = (): useFormReturn => {
+// type UseFormReturn = [FormValues, handleChange, RegisterData, PreferencesData];
+type UseFormReturn = [FormValues, (event: ChangeEvent<HTMLInputElement>) => void, RegisterData, PreferencesData];
+
+
+export const useForm = (): UseFormReturn => {
   const [formValues, setFormValues] = useState({
     username: '',
     password: '',

@@ -150,7 +150,7 @@ export default function RegisterForm() {
           onChange={handleChange}
         />
       </label>
-      <hr></hr>
+      <hr />
       <h3>Tell us a bit about yourself:</h3>
       <ul>
         <li>
@@ -172,7 +172,7 @@ export default function RegisterForm() {
               name="favoriteAuthor"
               value={formValues.favoriteAuthor}
               onChange={handleChange}
-            ></input>
+            />
           </label>
         </li>
         <li>
@@ -183,7 +183,7 @@ export default function RegisterForm() {
               name="favoriteFood"
               value={formValues.favoriteFood}
               onChange={handleChange}
-            ></input>
+            />
           </label>
         </li>
         <li>
@@ -194,7 +194,7 @@ export default function RegisterForm() {
               name="favoritePlace"
               value={formValues.favoritePlace}
               onChange={handleChange}
-            ></input>
+            />
           </label>
         </li>
       </ul>

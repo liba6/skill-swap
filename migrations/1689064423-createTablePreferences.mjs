@@ -7,7 +7,6 @@ export async function up(sql) {
     favorite_author varchar (30)  NOT NULL,
     favorite_food varchar(20) NOT NULL,
     favorite_place varchar (20)  NOT NULL,
-
   )`;
 }
 
