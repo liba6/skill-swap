@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
+    "lint": "next lint",
     "migrate": "dotenv ley",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "@types/dotenv-safe": "^8.1.2",
