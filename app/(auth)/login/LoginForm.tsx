@@ -21,33 +21,13 @@ export default function LoginForm(props: { returnTo?: string | string[] }) {
           method: 'POST',
           body: JSON.stringify({ username, password }),
         });
-        console.log('response', response);
         const data: LoginResponseBody = await response.json();
-        // console.log('data', data);
+
         if ('errors' in data) {
           setErrors(data.errors);
           return;
         }
         router.push(`/profile/${data.user.username}`);
-
-        // if (
-        //   props.returnTo &&
-        //   !Array.isArray(props.returnTo) &&
-        //   /^\/[a-zA-Z0-9-?=/]*$/.test(props.returnTo)
-        // ) {
-        //   router.push(props.returnTo);
-        //   return;
-        // }
-        // const returnTo = getSafeReturnToPath(props.returnTo);
-
-        // if (returnTo) {
-        // router.push(`/profile/${data.user.username}`);
-        // return;
-        // }
-
-        // router.replace(`/attractions
-        // `);
-        // router.refresh();
       }}
     >
       {errors.map((error) => (
