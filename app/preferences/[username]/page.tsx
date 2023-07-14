@@ -1,4 +1,4 @@
-import { getPreferencesByUsername } from '../../../database/users';
+import { getPreferencesByUsername } from '../../../database/preferences';
 
 type Params = {
   params: {

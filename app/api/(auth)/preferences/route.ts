@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createNewPreferences } from '../../../../database/users';
+import { createNewPreferences } from '../../../../database/preferences';
 
 const userSchema = z.object({
   username: z.string(),
@@ -15,7 +15,7 @@ export const POST = async (request: NextRequest) => {
   if (!result.success) {
     return NextResponse.json({ errors: result.error.issues }, { status: 400 });
   }
-
+  console.log('backendpref', result);
   // check no input fields empty
   if (
     !result.data.username ||

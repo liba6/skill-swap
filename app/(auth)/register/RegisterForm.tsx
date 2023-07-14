@@ -31,7 +31,6 @@ export default function RegisterForm() {
         });
 
         const data: RegisterResponseBody = await response.json();
-        console.log('body', data);
 
         const datapref: string = await responsepref.json();
 

@@ -59,7 +59,7 @@ export const POST = async (request: NextRequest) => {
       { status: 401 },
     );
   }
-  // 5. create a sesion
+  // 5. create Session
 
   // create token
   const token = crypto.randomBytes(80).toString('base64');

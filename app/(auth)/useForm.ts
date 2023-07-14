@@ -33,10 +33,13 @@ type PreferencesData = {
 //   event: ChangeEvent<HTMLInputElement>,
 // ) => void;
 
-
 // type UseFormReturn = [FormValues, handleChange, RegisterData, PreferencesData];
-type UseFormReturn = [FormValues, (event: ChangeEvent<HTMLInputElement>) => void, RegisterData, PreferencesData];
-
+type UseFormReturn = [
+  FormValues,
+  (event: ChangeEvent<HTMLInputElement>) => void,
+  RegisterData,
+  PreferencesData,
+];
 
 export const useForm = (): UseFormReturn => {
   const [formValues, setFormValues] = useState({
