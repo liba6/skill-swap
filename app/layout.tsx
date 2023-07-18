@@ -27,17 +27,14 @@ export default async function RootLayout(props: Props) {
       <head />
       <body>
         <nav>
-          <ul>
-            {/* {user ? (
-              <a href="/logout">Logout</a>
-            ) : (
-              <> */}
-            <a href="/register">Register</a>
-            <a href="/logout">Logout</a>
-
-            <a href="/login">Login</a>
-            {/* </> */}
-          </ul>
+          {user ? (
+            <Link href="/logout">Logout</Link>
+          ) : (
+            <div>
+              <Link href="/register">Register</Link>
+              <Link href="/login">Login</Link>
+            </div>
+          )}
         </nav>
         {props.children}
         <footer>Liba Shapiro MSc 2023</footer>

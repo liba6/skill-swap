@@ -29,14 +29,25 @@
     "@types/dotenv-safe": "^8.1.2",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
-    "eslint": "^8.44.0",
+    "eslint": "^8.45.0",
     "eslint-config-upleveled": "^5.0.0",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-next": "^0.0.0",
     "html-loader": "^4.2.0",
     "ley": "^0.8.1",
     "libpg-query": "^15.0.2",
     "stylelint": "^15.6.1",
     "stylelint-config-upleveled": "^1.0.2",
     "typescript": "^5.0.4"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "next"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:next/recommended"
+    ],
+    "rules": {}
   }
 }
