@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createSession } from '../../../../database/sessions';
 import { getUserByUsernameWithPasswordHash } from '../../../../database/users';
+import { createSerializedRegisterSessionTokenCookie } from '../../../../util/cookies';
 
 const userSchema = z.object({
   username: z.string(),
@@ -27,7 +28,7 @@ export const POST = async (request: NextRequest) => {
       { status: 400 },
     );
   }
-  // 2. check if both username and password given
+  // 2. check if both username and password fields not empty
   if (!result.data.username || !result.data.password) {
     return NextResponse.json(
       { errors: [{ message: 'username or password field is empty' }] },
@@ -63,12 +64,29 @@ export const POST = async (request: NextRequest) => {
 
   // create token
   const token = crypto.randomBytes(80).toString('base64');
+
   // create session
   const session = await createSession(userWithPasswordHash.id, token);
-  console.log(session);
-  // attach serialized new cookie to header of response
 
-  return NextResponse.json({
-    user: { username: userWithPasswordHash.username },
-  });
+  if (!session) {
+    return NextResponse.json(
+      { errors: [{ message: 'session creation failed' }] },
+      { status: 500 },
+    );
+  }
+
+  // attach serialized new cookie to header of response
+  const serializedCookie = createSerializedRegisterSessionTokenCookie(
+    session.token,
+  );
+
+  // add new header
+  return NextResponse.json(
+    { user: { username: userWithPasswordHash.username } },
+    {
+      status: 200,
+      // attach new serialized cookie to header of response
+      headers: { 'Set-Cookie': serializedCookie },
+    },
+  );
 };

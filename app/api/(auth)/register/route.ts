@@ -1,7 +1,14 @@
+import crypto from 'node:crypto';
 import bcrypt from 'bcrypt';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createUser, getUserByUsername } from '../../../../database/users';
+import { createSession } from '../../../../database/sessions';
+import {
+  createUser,
+  getUserByUsername,
+  getUserByUsernameWithPasswordHash,
+} from '../../../../database/users';
+import { createSerializedRegisterSessionTokenCookie } from '../../../../util/cookies';
 
 const userSchema = z.object({
   username: z.string(),
@@ -39,8 +46,7 @@ export async function POST(request: NextRequest) {
   // 1. check that inputs have userSchema
   const body = await request.json();
   const result = userSchema.safeParse(body);
-  console.log('body', body);
-  console.log('result', result);
+
   if (!result.success) {
     return NextResponse.json({ errors: result.error.issues }, { status: 400 });
   }
@@ -87,7 +93,33 @@ export async function POST(request: NextRequest) {
       { status: 500 },
     );
   }
-  // 5. Tell client that username created
+  // 5. create Session
 
-  return NextResponse.json({ user: { username: newUser.username } });
+  // create token
+  const token = crypto.randomBytes(80).toString('base64');
+
+  // create session
+  const session = await createSession(newUser.id, token);
+
+  if (!session) {
+    return NextResponse.json(
+      { errors: [{ message: 'session creation failed' }] },
+      { status: 500 },
+    );
+  }
+
+  // attach serialized new cookie to header of response
+  const serializedCookie = createSerializedRegisterSessionTokenCookie(
+    session.token,
+  );
+
+  // 6. return new username with header
+  return NextResponse.json(
+    { user: { username: newUser.username } },
+    {
+      status: 200,
+      // attach new serialized cookie to header of response
+      headers: { 'Set-Cookie': serializedCookie },
+    },
+  );
 }

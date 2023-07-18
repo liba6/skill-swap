@@ -6,8 +6,18 @@
 .body {
   height: 9500px;
   width: 1490px;
-  margin-top: -150px;
-  background-repeat: no-repeat;
+  // margin-top: -150px;
+  // background-repeat: no-repeat;
+  // background-color: #9cb1d2;
+  background: url('../../../public/signposts.jpg');
+  // no-repeat center center fixed;
+  // -webkit-background-size: cover;
+  // -moz-background-size: cover;
+  // -o-background-size: cover;
+  background-size: cover;
+  // opacity: 0.7;
+  // height: 1240px;
+  // margin-top: -50px;
 }
 
 .container {

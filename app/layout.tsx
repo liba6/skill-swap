@@ -1,4 +1,6 @@
+import { cookies } from 'next/headers';
 import Link from 'next/link';
+import { getUserBySessionToken } from '../database/users';
 import styles from './layout.module.scss';
 
 export const metadata = {
@@ -10,17 +12,31 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function RootLayout(props: Props) {
+export const dynamic = 'force-dynamic';
+
+export default async function RootLayout(props: Props) {
+  // get session token from cookie
+  const cookieStore = cookies();
+  const token = cookieStore.get('sessionToken');
+
+  // get user profile matching the session
+  const user = token && (await getUserBySessionToken(token.value));
+
   return (
     <html lang="en">
       <head />
-      <body className={styles.body}>
+      <body>
         <nav>
           <ul>
-            <a href="/login">Login</a>
-            <a href="/logout">Logout</a>
+            {/* {user ? (
+              <a href="/logout">Logout</a>
+            ) : (
+              <> */}
             <a href="/register">Register</a>
-            <a href="/preferences"> Preferences</a>
+            <a href="/logout">Logout</a>
+
+            <a href="/login">Login</a>
+            {/* </> */}
           </ul>
         </nav>
         {props.children}
