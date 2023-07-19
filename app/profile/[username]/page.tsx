@@ -26,22 +26,23 @@ export default async function UserProfile({ params }: Props) {
 
       <p>Skill you want to learn: {user.skillLearn} </p>
       <div>
-        {' '}
-        Here are the teachers available to teach you :
-        {teachers ? (
-          teachers.map((teacher) => (
-            <li key={teacher.id}>
-              {' '}
-              {teacher.username}
-              <span></span>
-              <Link href={`/preferences/${teacher.username}`}>
-                <button>Learn more about {teacher.username} </button>
-              </Link>
-              <a href={`mailto:${teacher.email}`} target="_blank">
-                <button>Contact {teacher.username}</button>
-              </a>{' '}
-            </li>
-          ))
+        {teachers.length > 0 ? (
+          <>
+            <p>Here are the teachers available to teach you :</p>
+            {teachers.map((teacher) => (
+              <li key={teacher.id}>
+                {' '}
+                {teacher.username}
+                <span></span>
+                <Link href={`/preferences/${teacher.username}`}>
+                  <button>Learn more about {teacher.username} </button>
+                </Link>
+                <a href={`mailto:${teacher.email}`} target="_blank">
+                  <button>Contact {teacher.username}</button>
+                </a>{' '}
+              </li>
+            ))}
+          </>
         ) : (
           <span>Sorry, at this time, no available teachers found.</span>
         )}
@@ -49,7 +50,7 @@ export default async function UserProfile({ params }: Props) {
 
       <hr></hr>
       <p>Skill you want to teach: {user.skillTeach}</p>
-      {!students ? (
+      {!students || students.length === 0 ? (
         <div>No students need your services at this time.</div>
       ) : (
         <div>
