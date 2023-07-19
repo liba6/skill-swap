@@ -51,7 +51,13 @@ export const getUserByUsername = cache(async (username: string) => {
 
 export const getUserBySkillTeach = cache(async (skillLearn: string) => {
   const users = await sql<
-    { id: number; username: string; skillTeach: string; skillLearn: string }[]
+    {
+      id: number;
+      username: string;
+      skillTeach: string;
+      skillLearn: string;
+      email: string;
+    }[]
   >`SELECT * FROM users WHERE skill_teach = ${skillLearn}`;
 
   return users;
@@ -59,7 +65,13 @@ export const getUserBySkillTeach = cache(async (skillLearn: string) => {
 
 export const getUserBySkillLearn = cache(async (skillTeach: string) => {
   const users = sql<
-    { id: number; username: string; skillTeach: string; skillLearn: string }[]
+    {
+      id: number;
+      username: string;
+      skillTeach: string;
+      skillLearn: string;
+      email: string;
+    }[]
   >`
   SELECT * FROM users WHERE skill_learn = ${skillTeach}`;
   return users;

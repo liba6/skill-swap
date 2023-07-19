@@ -39,15 +39,5 @@
     "stylelint": "^15.6.1",
     "stylelint-config-upleveled": "^1.0.2",
     "typescript": "^5.0.4"
-  },
-  "eslintConfig": {
-    "plugins": [
-      "next"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:next/recommended"
-    ],
-    "rules": {}
   }
 }

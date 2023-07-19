@@ -31,7 +31,6 @@ export default async function RootLayout(props: Props) {
             <Link href="/logout">Logout</Link>
           ) : (
             <div>
-              <Link href="/register">Register</Link>
               <Link href="/login">Login</Link>
             </div>
           )}

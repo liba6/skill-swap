@@ -5,6 +5,7 @@ import {
   getUserBySkillTeach,
   getUserByUsername,
 } from '../../../database/users';
+import styles from './page.module.scss';
 
 type Props = { params: { username: string } };
 
@@ -19,7 +20,7 @@ export default async function UserProfile({ params }: Props) {
   const students = await getUserBySkillLearn(user.skillTeach);
 
   return (
-    <>
+    <div className={styles.div}>
       <h1>{user.username}</h1>
       <hr></hr>
 
@@ -36,7 +37,9 @@ export default async function UserProfile({ params }: Props) {
               <Link href={`/preferences/${teacher.username}`}>
                 <button>Learn more about {teacher.username} </button>
               </Link>
-              <button>Contact {teacher.username}</button>
+              <a href={`mailto:${teacher.email}`} target="_blank">
+                <button>Contact {teacher.username}</button>
+              </a>{' '}
             </li>
           ))
         ) : (
@@ -60,11 +63,13 @@ export default async function UserProfile({ params }: Props) {
               <Link href={`/preferences/${student.username}`}>
                 <button>Learn more about {student.username} </button>
               </Link>
-              <button>Contact {student.username}</button>
+              <a href={`mailto:${student.email}`} target="_blank">
+                <button>Contact {student.username}</button>
+              </a>
             </li>
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }

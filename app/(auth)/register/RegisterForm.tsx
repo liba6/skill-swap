@@ -13,6 +13,7 @@ export default function RegisterForm() {
 
   return (
     <form
+      className={styles.body}
       onSubmit={async (event) => {
         event.preventDefault();
 
@@ -200,6 +201,11 @@ export default function RegisterForm() {
       <div>
         <button>Register</button>
       </div>
+
+      <button>
+        {' '}
+        <a href="./login">I have an account already</a>{' '}
+      </button>
     </form>
   );
 }
