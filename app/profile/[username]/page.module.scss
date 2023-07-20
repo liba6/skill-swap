@@ -1,5 +1,7 @@
 .div {
-  background: url('../../../public/grouplearning.jpeg');
+  background: url('../../../public/booklearning.jpeg');
   background-size: cover;
-  height: 700px;
+  min-height: 100vh;
+  background-attachment: fixed;
+  width: 100vw;
 }

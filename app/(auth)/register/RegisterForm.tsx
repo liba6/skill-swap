@@ -12,200 +12,230 @@ export default function RegisterForm() {
   const router = useRouter();
 
   return (
-    <form
-      className={styles.body}
-      onSubmit={async (event) => {
-        event.preventDefault();
+    <div className={styles.body}>
+      <form
+        className="container"
+        onSubmit={async (event) => {
+          event.preventDefault();
 
-        const response = await fetch('/api/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(registerData),
-        });
+          const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(registerData),
+          });
 
-        const responsepref = await fetch('/api/preferences', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(preferencesData),
-        });
+          const responsepref = await fetch('/api/preferences', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(preferencesData),
+          });
 
-        const data: RegisterResponseBody = await response.json();
+          const data: RegisterResponseBody = await response.json();
 
-        const datapref: string = await responsepref.json();
+          const datapref: string = await responsepref.json();
 
-        alert(datapref);
-        if ('errors' in data) {
-          setErrors(data.errors);
-          return;
-        }
+          alert(datapref);
+          if ('errors' in data) {
+            setErrors(data.errors);
+            return;
+          }
 
-        router.push(`/profile/${data.user.username}`);
-      }}
-    >
-      {errors.map((error) => (
-        <div key={`error-${error.message}`}>Error: {error.message}</div>
-      ))}
-      <label>
-        {' '}
-        Username:{' '}
-        <input
-          name="username"
-          value={formValues.username}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        {' '}
-        Password:{' '}
-        <input
-          name="password"
-          value={formValues.password}
-          type="password"
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        My Email:
-        <input
-          type="email"
-          name="email"
-          value={formValues.email}
-          onChange={handleChange}
-        />
-      </label>
-      <h2>Choose a subject you would like to teach:</h2>
-      <label>
-        Math
-        <input
-          type="radio"
-          name="skillteach"
-          value="Math"
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Science
-        <input
-          type="radio"
-          name="skillteach"
-          value="Science"
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Literature
-        <input
-          type="radio"
-          name="skillteach"
-          value="Literature"
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Web Development
-        <input
-          type="radio"
-          name="skillteach"
-          value="Web Development"
-          onChange={handleChange}
-        />
-      </label>
-
-      <h2>Choose a subject you would like to learn:</h2>
-      <label>
-        Math
-        <input
-          type="radio"
-          name="skilllearn"
-          value="Math"
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Science
-        <input
-          type="radio"
-          name="skilllearn"
-          value="Science"
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Literature
-        <input
-          type="radio"
-          name="skilllearn"
-          value="Literature"
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Web Development
-        <input
-          type="radio"
-          name="skilllearn"
-          value="Web Development"
-          onChange={handleChange}
-        />
-      </label>
-      <hr />
-      <h3>Tell us a bit about yourself:</h3>
-      <ul>
-        <li>
-          <label>
-            {' '}
-            What's your favorite color?
+          router.push(`/profile/${data.user.username}`);
+        }}
+      >
+        {errors.map((error) => (
+          <div key={`error-${error.message}`}>Error: {error.message}</div>
+        ))}
+        <div>
+          <div className="row mb-5 mt-5">
+            <div className="col">
+              <div className="form-floating ">
+                <input
+                  className="form-control"
+                  name="username"
+                  value={formValues.username}
+                  onChange={handleChange}
+                  placeholder="type Username here"
+                  required
+                />
+                <label className="form-label"> Username: </label>{' '}
+              </div>
+            </div>
+            <div className="col">
+              <div className="form-floating">
+                <input
+                  className="form-control"
+                  name="password"
+                  value={formValues.password}
+                  type="password"
+                  onChange={handleChange}
+                  placeholder="type password here"
+                  required
+                />
+                <label className="form-label"> Password: </label>
+              </div>
+            </div>
+            <div className="col">
+              <div className="form-floating">
+                <input
+                  className="form-control"
+                  type="email"
+                  name="email"
+                  value={formValues.email}
+                  onChange={handleChange}
+                  placeholder="type email here"
+                  required
+                />
+                <label className="form-label">My Email:</label>
+              </div>
+            </div>
+          </div>
+          <h3>Choose a subject you would like to teach:</h3>
+          <label className="form-check form-check-inline mb-5">
+            Math
             <input
-              name="favoriteColor"
-              value={formValues.favoriteColor}
+              className="form-check-input"
+              type="radio"
+              name="skillteach"
+              value="Math"
               onChange={handleChange}
             />
           </label>
-        </li>
-        <li>
-          <label>
-            {' '}
-            Who's your favorite author?
+          <label className="form-check form-check-inline">
+            Science
             <input
-              name="favoriteAuthor"
-              value={formValues.favoriteAuthor}
+              className="form-check-input"
+              type="radio"
+              name="skillteach"
+              value="Science"
               onChange={handleChange}
             />
           </label>
-        </li>
-        <li>
-          <label>
-            {' '}
-            What's your favorite food?
+          <label className="form-check form-check-inline">
+            Literature
             <input
-              name="favoriteFood"
-              value={formValues.favoriteFood}
+              className="form-check-input"
+              type="radio"
+              name="skillteach"
+              value="Literature"
               onChange={handleChange}
             />
           </label>
-        </li>
-        <li>
-          <label>
-            {' '}
-            What's your favorite place?
+          <label className="form-check form-check-inline">
+            Web Development
             <input
-              name="favoritePlace"
-              value={formValues.favoritePlace}
+              className="form-check-input "
+              type="radio"
+              name="skillteach"
+              value="Web Development"
               onChange={handleChange}
             />
           </label>
-        </li>
-      </ul>
-      <div>
-        <button>Register</button>
-      </div>
+        </div>
+        <h3>Choose a subject you would like to learn:</h3>
+        <label className="form-check form-check-inline mb-5 mt-3">
+          Math
+          <input
+            className="form-check-input"
+            type="radio"
+            name="skilllearn"
+            value="Math"
+            onChange={handleChange}
+          />
+        </label>
+        <label className="form-check form-check-inline">
+          Science
+          <input
+            className="form-check-input"
+            type="radio"
+            name="skilllearn"
+            value="Science"
+            onChange={handleChange}
+          />
+        </label>
+        <label className="form-check form-check-inline">
+          Literature
+          <input
+            className="form-check-input"
+            type="radio"
+            name="skilllearn"
+            value="Literature"
+            onChange={handleChange}
+          />
+        </label>
+        <label className="form-check form-check-inline">
+          Web Development
+          <input
+            className="form-check-input"
+            type="radio"
+            name="skilllearn"
+            value="Web Development"
+            onChange={handleChange}
+          />
+        </label>
+        <hr />
+        <h3>Tell us a bit about yourself:</h3>
+        <div>
+          <p>
+            <div className="form-floating">
+              <input
+                className="form-control"
+                name="favoriteColor"
+                value={formValues.favoriteColor}
+                onChange={handleChange}
+                placeholder="type your favorite color"
+              />
+              <label className="form-label"> What's your favorite color?</label>
+            </div>
+          </p>
+          <p>
+            <div className="form-floating">
+              <input
+                className="form-control"
+                name="favoriteAuthor"
+                value={formValues.favoriteAuthor}
+                onChange={handleChange}
+                placeholder="type your favorite Author"
+              />
+              <label className="form-label"> Who's your favorite author?</label>
+            </div>
+          </p>
+          <p>
+            <div className="form-floating">
+              <input
+                className="form-control"
+                name="favoriteFood"
+                value={formValues.favoriteFood}
+                onChange={handleChange}
+                placeholder="type your favorite food"
+              />
+              <label className="form-label"> What's your favorite food?</label>
+            </div>
+          </p>
+          <p>
+            <div className="form-floating">
+              <input
+                className="form-control"
+                name="favoritePlace"
+                value={formValues.favoritePlace}
+                onChange={handleChange}
+                placeholder="type your favorite place"
+              />
+              <label className="form-label"> What's your favorite place?</label>
+            </div>
+          </p>
+        </div>
+        <div>
+          <button className="btn btn-success">Register</button>
+        </div>
 
-      <button>
-        {' '}
-        <a href="./login">I have an account already</a>{' '}
-      </button>
-    </form>
+        <button className="btn btn-warning">
+          {' '}
+          <a href="./login">I have an account already</a>{' '}
+        </button>
+      </form>
+    </div>
   );
 }
