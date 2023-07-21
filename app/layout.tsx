@@ -39,17 +39,21 @@ export default async function RootLayout(props: Props) {
         ></script>
       </head>
       <body>
-        <nav>
+        <nav className={styles.nav}>
           {user ? (
-            <a href="/logout">Logout</a>
+            <a href="/logout" className="btn btn-light">
+              Logout
+            </a>
           ) : (
             <div>
-              <a href="/login">Login</a>
+              <a href="/login" className="btn btn-success">
+                Login
+              </a>
             </div>
           )}
         </nav>
         {props.children}
-        <footer>Liba Shapiro MSc 2023</footer>
+        <footer className={styles.footer}>Liba Shapiro MSc 2023</footer>
       </body>
     </html>
   );
