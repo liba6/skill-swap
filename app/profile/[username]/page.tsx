@@ -23,7 +23,6 @@ export default async function UserProfile({ params }: Props) {
     <div className={styles.div}>
       <div className="container">
         <h1>{user.username}</h1>
-        {/* <hr></hr> */}
         <div className="row">
           <div className="col">
             <div className="row mb-5 mt-4">

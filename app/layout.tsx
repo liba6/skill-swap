@@ -1,5 +1,4 @@
 import { cookies } from 'next/headers';
-import Link from 'next/link';
 import { getUserBySessionToken } from '../database/users';
 import styles from './layout.module.scss';
 
@@ -39,21 +38,50 @@ export default async function RootLayout(props: Props) {
         ></script>
       </head>
       <body>
-        <nav className={styles.nav}>
-          {user ? (
-            <a href="/logout" className="btn btn-light">
-              Logout
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+          <div className="container">
+            <a className="navbar-brand" href="/">
+              Home
             </a>
-          ) : (
-            <div>
-              <a href="/login" className="btn btn-success">
-                Login
-              </a>
-            </div>
-          )}
+            {user ? (
+              <>
+                <button
+                  className="navbar-toggler"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#nav"
+                  aria-controls="nav"
+                  aria-label="Expand Navigation"
+                >
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="nav">
+                  <ul className="navbar-nav ms-auto">
+                    <li className="nav-item">
+                      <a
+                        href="/calculations/user"
+                        className="nav-link"
+                        aria-current="page"
+                      >
+                        Manage account
+                      </a>
+                    </li>
+                    <li className="nav-item ">
+                      <a href="/logout" className="nav-link">
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </>
+            ) : null}
+          </div>
         </nav>
         {props.children}
-        <footer className={styles.footer}>Liba Shapiro MSc 2023</footer>
+        <div className="container">
+          <footer className={`row justify-content-center ${styles.footer}`}>
+            Liba Shapiro MSc 2023
+          </footer>
+        </div>
       </body>
     </html>
   );
