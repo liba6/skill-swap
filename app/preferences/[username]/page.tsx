@@ -11,12 +11,22 @@ export default async function preferencesPage(params: Params) {
   const profilePreferences = await getPreferencesByUsername(username);
   return (
     <div className={styles.div}>
-      <div className="container">
-        <p>Some fun facts about {params.params.username}</p>{' '}
-        <p>Favorite Color: {profilePreferences?.favoriteColor}</p>
-        <p>Favorite Author: {profilePreferences?.favoriteAuthor}</p>
-        <p>Favorite Food: {profilePreferences?.favoriteFood}</p>
-        <p>Favorite Place: {profilePreferences?.favoritePlace}</p>
+      <div className="container ">
+        <h2 className="h2 p-5  text-center">
+          Some fun facts about {params.params.username}
+        </h2>{' '}
+        <h4 className="h-4 m-4 p-2">
+          Favorite Color: {profilePreferences?.favoriteColor}
+        </h4>
+        <h4 className="h-4 m-4 p-2">
+          Favorite Author: {profilePreferences?.favoriteAuthor}
+        </h4>
+        <h4 className="h-4 m-4 p-2">
+          Favorite Food: {profilePreferences?.favoriteFood}
+        </h4>
+        <h4 className="h-4 m-4 p-2">
+          Favorite Place: {profilePreferences?.favoritePlace}
+        </h4>
       </div>
     </div>
   );

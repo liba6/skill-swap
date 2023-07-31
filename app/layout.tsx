@@ -56,6 +56,14 @@ export default async function RootLayout(props: Props) {
                 </button>
                 <div className="collapse navbar-collapse" id="nav">
                   <ul className="navbar-nav ms-auto">
+                    <li className="nav-item ">
+                      <a
+                        href={`/profile/${user.username}`}
+                        className="nav-link"
+                      >
+                        My Profile
+                      </a>
+                    </li>
                     <li className="nav-item">
                       <a
                         href="/calculations/user"
