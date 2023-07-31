@@ -12,7 +12,7 @@ export default function Home() {
         </h2>
         <div className={styles.btncontainer}>
           <Link href="/login">
-            <button className="btn btn-warning">Start Swapping</button>
+            <button className="btn btn-warning m-3">Start Swapping</button>
           </Link>
         </div>
       </div>

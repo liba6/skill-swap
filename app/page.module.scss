@@ -1,8 +1,9 @@
 .div {
   background: url('../public/learning.jpeg');
-  background-size: cover;
+  background-size: contain;
   height: 100vh;
   width: 100vw;
+  background-repeat: repeat-x;
 }
 .h1,
 .h2 {

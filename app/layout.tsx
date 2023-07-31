@@ -78,7 +78,7 @@ export default async function RootLayout(props: Props) {
         </nav>
         {props.children}
         <div className="container">
-          <footer className={`row justify-content-center ${styles.footer}`}>
+          <footer className={`row justify-content-center ${styles.footer} `}>
             Liba Shapiro MSc 2023
           </footer>
         </div>

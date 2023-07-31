@@ -37,26 +37,31 @@ export default function LoginForm(props: { returnTo?: string | string[] }) {
         </div>
       ))}
       <div className={styles.body}>
+        <h1 className={styles.h1}>Log In</h1>
         <div className={styles.container}>
-          <h1 className={styles.h1}>Log In</h1>
-
-          <label>
-            Username:
+          <div className="form-floating m-4">
             <input
               value={username}
-              className={styles.input}
+              className="form-control"
               onChange={(event) => setUsername(event.currentTarget.value)}
+              placeholder="Username"
+              required
+              name="username"
             />
-          </label>
-          <label>
-            Password:
+            <label className="form-label">Username</label>
+          </div>
+          <div className="form-floating m-4">
             <input
               value={password}
               type="password"
               onChange={(event) => setPassword(event.currentTarget.value)}
-              className={styles.input}
+              className="form-control"
+              name="password"
+              placeholder="Password"
+              required
             />
-          </label>
+            <label className="form-label">Password</label>
+          </div>
           <div className={styles.buttons}>
             <button className={styles.button}>Log In</button>
 

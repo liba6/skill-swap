@@ -20,18 +20,19 @@ export default async function UserProfile({ params }: Props) {
   const students = await getUserBySkillLearn(user.skillTeach);
 
   return (
-    <div className={styles.div}>
+    <div className={`${styles.div}`}>
       <div className="container">
         <h1>{user.username}</h1>
         <div className="row">
           <div className="col">
-            <div className="row mb-5 mt-4">
-              <p>Skill you want to learn: {user.skillLearn} </p>
-            </div>
+            <div className="row mb-5 mt-4"></div>
             <div>
               {teachers.length > 0 ? (
                 <>
-                  <p>Here are the teachers available to teach you :</p>
+                  <p>
+                    Here are the teachers available to teach you{' '}
+                    {user.skillLearn}:
+                  </p>
                   {teachers.map((teacher) => (
                     <li key={teacher.id}>
                       {' '}
@@ -59,33 +60,48 @@ export default async function UserProfile({ params }: Props) {
             </div>
           </div>
 
-          {/* <hr></hr> */}
           <div className="col">
             <div className="row mt-4 mb-5">
-              <p>Skill you want to teach: {user.skillTeach}</p>
+              {/* <p>Skill you want to teach: {user.skillTeach}</p> */}
             </div>
             {!students || students.length === 0 ? (
               <span>No students need your services at this time.</span>
             ) : (
               <div>
                 {' '}
-                <p>Here are the students waiting to learn from you:</p>
+                <p>
+                  Here are the students waiting to learn
+                  {' ' + user.skillTeach}:
+                </p>
                 {students.map((student) => (
-                  <li key={student.id}>
-                    {student.username}
-                    <div className="row mt-3">
-                      <div className="col">
-                        <Link href={`/preferences/${student.username}`}>
-                          <button>More about {student.username} </button>
-                        </Link>
-                      </div>
-                      <div className="col">
-                        <a href={`mailto:${student.email}`} target="_blank">
-                          <button>Contact {student.username}</button>
-                        </a>
-                      </div>
-                    </div>
-                  </li>
+                  <div key={student.id} className="container">
+                    <table className="table table-secondary table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th> Student</th>
+                          <th> About</th>
+                          <th>Contact</th>
+                        </tr>
+                      </thead>
+                      <tbody className="table-group-divider">
+                        <tr>
+                          <td> {student.username}</td>
+                          <td>
+                            {' '}
+                            <Link href={`/preferences/${student.username}`}>
+                              <button>More about {student.username} </button>
+                            </Link>
+                          </td>
+                          <td>
+                            {' '}
+                            <a href={`mailto:${student.email}`} target="_blank">
+                              <button>Contact {student.username}</button>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 ))}
               </div>
             )}

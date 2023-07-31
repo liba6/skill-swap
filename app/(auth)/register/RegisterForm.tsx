@@ -49,11 +49,11 @@ export default function RegisterForm() {
           <div key={`error-${error.message}`}>Error: {error.message}</div>
         ))}
         <div>
-          <div className="row mb-5 mt-5">
+          <div className="row mb-5 ">
             <div className="col">
               <div className="form-floating ">
                 <input
-                  className="form-control"
+                  className="form-control mt-5"
                   name="username"
                   value={formValues.username}
                   onChange={handleChange}
@@ -66,7 +66,7 @@ export default function RegisterForm() {
             <div className="col">
               <div className="form-floating">
                 <input
-                  className="form-control"
+                  className="form-control mt-5"
                   name="password"
                   value={formValues.password}
                   type="password"
@@ -80,7 +80,7 @@ export default function RegisterForm() {
             <div className="col">
               <div className="form-floating">
                 <input
-                  className="form-control"
+                  className="form-control mt-5"
                   type="email"
                   name="email"
                   value={formValues.email}
@@ -93,12 +93,57 @@ export default function RegisterForm() {
             </div>
           </div>
           <h3>Choose a subject you would like to teach:</h3>
-          <label className="form-check form-check-inline mb-5">
+          <div className="d-flex justify-content-between p-2">
+            <label className="form-check form-check-inline mb-5 ">
+              Math
+              <input
+                className="form-check-input"
+                type="radio"
+                name="skillteach"
+                value="Math"
+                onChange={handleChange}
+              />
+            </label>
+            <label className="form-check form-check-inline">
+              Science
+              <input
+                className="form-check-input"
+                type="radio"
+                name="skillteach"
+                value="Science"
+                onChange={handleChange}
+              />
+            </label>
+            <label className="form-check form-check-inline">
+              Literature
+              <input
+                className="form-check-input"
+                type="radio"
+                name="skillteach"
+                value="Literature"
+                onChange={handleChange}
+              />
+            </label>
+            <label className="form-check form-check-inline">
+              Web Development
+              <input
+                className="form-check-input "
+                type="radio"
+                name="skillteach"
+                value="Web Development"
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+        </div>
+        <h3>Choose a subject you would like to learn:</h3>
+        <div className="d-flex justify-content-between p-2">
+          <label className="form-check form-check-inline mb-4 ">
             Math
             <input
               className="form-check-input"
               type="radio"
-              name="skillteach"
+              name="skilllearn"
               value="Math"
               onChange={handleChange}
             />
@@ -108,7 +153,7 @@ export default function RegisterForm() {
             <input
               className="form-check-input"
               type="radio"
-              name="skillteach"
+              name="skilllearn"
               value="Science"
               onChange={handleChange}
             />
@@ -118,7 +163,7 @@ export default function RegisterForm() {
             <input
               className="form-check-input"
               type="radio"
-              name="skillteach"
+              name="skilllearn"
               value="Literature"
               onChange={handleChange}
             />
@@ -126,115 +171,90 @@ export default function RegisterForm() {
           <label className="form-check form-check-inline">
             Web Development
             <input
-              className="form-check-input "
+              className="form-check-input"
               type="radio"
-              name="skillteach"
+              name="skilllearn"
               value="Web Development"
               onChange={handleChange}
             />
           </label>
         </div>
-        <h3>Choose a subject you would like to learn:</h3>
-        <label className="form-check form-check-inline mb-5 mt-3">
-          Math
-          <input
-            className="form-check-input"
-            type="radio"
-            name="skilllearn"
-            value="Math"
-            onChange={handleChange}
-          />
-        </label>
-        <label className="form-check form-check-inline">
-          Science
-          <input
-            className="form-check-input"
-            type="radio"
-            name="skilllearn"
-            value="Science"
-            onChange={handleChange}
-          />
-        </label>
-        <label className="form-check form-check-inline">
-          Literature
-          <input
-            className="form-check-input"
-            type="radio"
-            name="skilllearn"
-            value="Literature"
-            onChange={handleChange}
-          />
-        </label>
-        <label className="form-check form-check-inline">
-          Web Development
-          <input
-            className="form-check-input"
-            type="radio"
-            name="skilllearn"
-            value="Web Development"
-            onChange={handleChange}
-          />
-        </label>
         <hr />
         <h3>Tell us a bit about yourself:</h3>
         <div>
-          <p>
-            <div className="form-floating">
-              <input
-                className="form-control"
-                name="favoriteColor"
-                value={formValues.favoriteColor}
-                onChange={handleChange}
-                placeholder="type your favorite color"
-              />
-              <label className="form-label"> What's your favorite color?</label>
+          <div className="row m-4">
+            <div className="col">
+              <div className="form-floating">
+                <input
+                  className="form-control"
+                  name="favoriteColor"
+                  value={formValues.favoriteColor}
+                  onChange={handleChange}
+                  placeholder="type your favorite color"
+                />
+                <label className="form-label">
+                  {' '}
+                  What's your favorite color?
+                </label>
+              </div>
             </div>
-          </p>
-          <p>
-            <div className="form-floating">
-              <input
-                className="form-control"
-                name="favoriteAuthor"
-                value={formValues.favoriteAuthor}
-                onChange={handleChange}
-                placeholder="type your favorite Author"
-              />
-              <label className="form-label"> Who's your favorite author?</label>
+            <div className="col">
+              <div className="form-floating">
+                <input
+                  className="form-control"
+                  name="favoriteAuthor"
+                  value={formValues.favoriteAuthor}
+                  onChange={handleChange}
+                  placeholder="type your favorite Author"
+                />
+                <label className="form-label">
+                  {' '}
+                  Who's your favorite author?
+                </label>
+              </div>
             </div>
-          </p>
-          <p>
-            <div className="form-floating">
-              <input
-                className="form-control"
-                name="favoriteFood"
-                value={formValues.favoriteFood}
-                onChange={handleChange}
-                placeholder="type your favorite food"
-              />
-              <label className="form-label"> What's your favorite food?</label>
+          </div>
+          <div className="row  m-4">
+            <div className="col">
+              <div className="form-floating">
+                <input
+                  className="form-control"
+                  name="favoriteFood"
+                  value={formValues.favoriteFood}
+                  onChange={handleChange}
+                  placeholder="type your favorite food"
+                />
+                <label className="form-label">
+                  {' '}
+                  What's your favorite food?
+                </label>
+              </div>
             </div>
-          </p>
-          <p>
-            <div className="form-floating">
-              <input
-                className="form-control"
-                name="favoritePlace"
-                value={formValues.favoritePlace}
-                onChange={handleChange}
-                placeholder="type your favorite place"
-              />
-              <label className="form-label"> What's your favorite place?</label>
+            <div className="col">
+              <div className="form-floating">
+                <input
+                  className="form-control"
+                  name="favoritePlace"
+                  value={formValues.favoritePlace}
+                  onChange={handleChange}
+                  placeholder="type your favorite place"
+                />
+                <label className="form-label">
+                  {' '}
+                  What's your favorite place?
+                </label>
+              </div>
             </div>
-          </p>
+          </div>
         </div>
-        <div>
+        <div className="d-flex justify-content-between mb-5 p-4 p-4 ">
           <button className="btn btn-success">Register</button>
-        </div>
 
-        <button className="btn btn-warning">
-          {' '}
-          <a href="./login">I have an account already</a>{' '}
-        </button>
+          <button className="btn btn-warning">
+            {' '}
+            <a href="./login">I have an account already</a>{' '}
+          </button>
+        </div>
       </form>
     </div>
   );

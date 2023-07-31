@@ -1,40 +1,32 @@
 .h1 {
   color: #6b6454;
   text-align: center;
+  margin: 50px;
 }
 
 .body {
-  width: 1490px;
-  // margin-top: -150px;
-  // background-repeat: no-repeat;
   background: url('../../../public/grouplearning.jpeg');
-  background-size: cover;
-  height: 900px;
+
+  background-size: contain;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: repeat-x;
 }
 
 .container {
   border-radius: 16px;
   padding: 50px;
-  margin: 50px auto;
-  max-width: 800px;
-  position: absolute;
-  top: 130px;
-  left: 450px;
+  margin: 70px auto;
+  max-width: 700px;
+  width: 100vw;
+  // position: absolute;
+  // top: 130px;
+  // left: 450px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2.7px);
   -webkit-backdrop-filter: blur(2.7px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: rgba(255, 255, 255, 0.65);
-}
-
-.input {
-  border: none;
-  border-bottom: 1px solid #cccccc;
-  padding: 10px;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
 }
 
 .button {
