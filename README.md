@@ -1,4 +1,3 @@
-Skill Swap
 Skill Swap is a fullstack app that empowers users to teach, learn and swap skills.
 
 Architecture: </br>
