@@ -1,5 +1,5 @@
 Skill Swap
-Skill Swap is a mobile-first fullstack app that allows users to teach, learn and swap skills.
+Skill Swap is a fullstack app that empowers users to teach, learn and swap skills.
 
 Architecture: </br>
 Frontend: Next.js 13 as the frontend framework to build our web app.
