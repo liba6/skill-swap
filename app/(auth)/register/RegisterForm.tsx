@@ -125,12 +125,12 @@ export default function RegisterForm() {
               />
             </label>
             <label className="form-check form-check-inline">
-              Web Development
+              Technology
               <input
                 className="form-check-input "
                 type="radio"
                 name="skillteach"
-                value="Web Development"
+                value="Technology"
                 onChange={handleChange}
               />
             </label>
@@ -169,12 +169,12 @@ export default function RegisterForm() {
             />
           </label>
           <label className="form-check form-check-inline">
-            Web Development
+            Technology
             <input
               className="form-check-input"
               type="radio"
               name="skilllearn"
-              value="Web Development"
+              value="Technology"
               onChange={handleChange}
             />
           </label>
@@ -192,10 +192,7 @@ export default function RegisterForm() {
                   onChange={handleChange}
                   placeholder="type your favorite color"
                 />
-                <label className="form-label">
-                  {' '}
-                  What's your favorite color?
-                </label>
+                <label className="form-label"> Favorite color?</label>
               </div>
             </div>
             <div className="col">
@@ -207,10 +204,7 @@ export default function RegisterForm() {
                   onChange={handleChange}
                   placeholder="type your favorite Author"
                 />
-                <label className="form-label">
-                  {' '}
-                  Who's your favorite author?
-                </label>
+                <label className="form-label"> Favorite author?</label>
               </div>
             </div>
           </div>
@@ -224,10 +218,7 @@ export default function RegisterForm() {
                   onChange={handleChange}
                   placeholder="type your favorite food"
                 />
-                <label className="form-label">
-                  {' '}
-                  What's your favorite food?
-                </label>
+                <label className="form-label"> Favorite food?</label>
               </div>
             </div>
             <div className="col">
@@ -239,21 +230,17 @@ export default function RegisterForm() {
                   onChange={handleChange}
                   placeholder="type your favorite place"
                 />
-                <label className="form-label">
-                  {' '}
-                  What's your favorite place?
-                </label>
+                <label className="form-label"> Favorite place?</label>
               </div>
             </div>
           </div>
         </div>
         <div className="d-flex justify-content-between mb-5 p-4 p-4 ">
-          <button className="btn btn-success">Register</button>
-
           <button className="btn btn-warning">
             {' '}
             <a href="./login">I have an account already</a>{' '}
           </button>
+          <button className="btn btn-success">Register</button>
         </div>
       </form>
     </div>

@@ -1414,10 +1414,10 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-eslint-config-upleveled@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/eslint-config-upleveled/-/eslint-config-upleveled-5.0.0.tgz"
-  integrity sha512-S0MOU3DmI4yPl0HlmBm5ALv7b+Iyuk9cZ321aCx5dATfrHNQ+478UzKcLhFQguu+n/KfQsHCjii0u5r5qcDgOQ==
+eslint-config-upleveled@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-upleveled/-/eslint-config-upleveled-5.0.2.tgz#e5dba93b6597b43c63ffe1661883f12ea1a674bc"
+  integrity sha512-iuiOq/C3AGqBZQrfVSl4R6IQHlTK+Hp8d9eknZzUMtLYElT2sT7NxJx4Ru84+d0aJsvy8WCTACAzxtFI4jXlJw==
 
 eslint-import-resolver-node@^0.3.7:
   version "0.3.7"
