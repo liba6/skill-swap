@@ -49,6 +49,7 @@ export default function RegisterForm() {
           <div key={`error-${error.message}`}>Error: {error.message}</div>
         ))}
         <div>
+          <h1 className="h-1 text-center p-4 mb-2">Register</h1>
           <div className="row mb-5 ">
             <div className="col">
               <div className="form-floating ">

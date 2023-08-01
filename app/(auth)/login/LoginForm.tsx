@@ -37,7 +37,7 @@ export default function LoginForm(props: { returnTo?: string | string[] }) {
         </div>
       ))}
       <div className={styles.body}>
-        <h1 className={styles.h1}>Log In</h1>
+        <h1 className="h-1 text-center p-4">Log In</h1>
         <div className={styles.container}>
           <div className="form-floating m-4">
             <input
