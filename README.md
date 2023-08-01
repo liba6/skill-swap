@@ -32,10 +32,6 @@ Registration:
 <br>
 ![registration](public/register.png)
 
-Login:
-<br>
-![login](public/login.png)
-
 Profile:
 <br>
 ![profile](public/profile.png)

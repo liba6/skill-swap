@@ -1,16 +1,15 @@
 .h1 {
   color: #6b6454;
   text-align: center;
-  margin: 50px;
+  padding: 50px;
 }
 
 .body {
-  background: url('../../../public/grouplearning.jpeg');
+  background: url('../../../public/book.webp');
 
-  background-size: contain;
+  background-size: cover;
   height: 100vh;
   width: 100vw;
-  background-repeat: repeat-x;
 }
 
 .container {
